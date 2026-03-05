@@ -88,8 +88,8 @@ class StartScreen:
         # instructions
         lines = [
             "Arrow Keys / WASD  -  Move",
-            "SPACE  -  Shoot (destroy bad items!)",
-            "Collect STARS (+1) and BOLTS (+3)",
+            "SPACE  -  Shoot (destroy bad items)",
+            "Score = seconds survived + bonus from good items",
             "Avoid METEORS and ENEMY SHIPS",
             "M  -  Toggle Music",
         ]

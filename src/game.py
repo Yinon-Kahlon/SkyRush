@@ -67,9 +67,10 @@ class Game:
         self.shake     = ScreenShake()
         self.rings     = RingEffect()
 
-        self.score = 0
-        self.lives = PLAYER_START_LIVES
-        self.level = 1
+        self.score        = 0
+        self.lives        = PLAYER_START_LIVES
+        self.level        = 1
+        self.score_timer  = 0   # counts frames for time-based scoring
 
     # ─── Main loop ────────────────────────────────────────────────────────────
 
@@ -134,6 +135,12 @@ class Game:
         self.items.update()
 
         self._check_collisions()
+
+        # time-based scoring: +1 every second survived
+        self.score_timer += 1
+        if self.score_timer >= 60:
+            self.score_timer = 0
+            self.score += 1
 
         if self.lives < 0:
             self.gameover_screen.set_data(self.score, self.level)
@@ -220,16 +227,13 @@ class Game:
             item.kill()
 
     def _bullet_destroy(self, bullet, item, cx, cy):
-        """Bullet hits a bad item — destroy both, small explosion."""
+        """Bullet hits a bad item — destroy both, small explosion. No score."""
         bullet.kill()
         item.kill()
         self.audio.play("explosion")
         self.particles.spawn_explosion(cx, cy, color=(255, 120, 20), count=14)
         self.rings.spawn(cx, cy, color=(255, 140, 0), max_r=50)
         self.shake.trigger(intensity=4, duration_frames=8)
-        # small score bonus for shooting
-        self.score += 1
-        self.popups.add(cx, cy - 20, 1)
 
     # ─── Game Over ────────────────────────────────────────────────────────────
 
