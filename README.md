@@ -37,22 +37,22 @@ All assets are included in the repository — no additional downloads needed.
 
 ## Gameplay
 
-- **Collect** stars and energy bolts rising from the bottom of the screen — **+100 points each**
-- **Avoid** meteors and enemy ships — each hit costs 1 life
+- **Collect** stars and energy bolts rising from the bottom of the screen - **+100 points each**
+- **Avoid** meteors and enemy ships - each hit costs 1 life
 - **Shoot** obstacles with your laser to destroy them (defensive — no score bonus)
-- You start with **3 lives** — the game ends when they run out
+- You start with **3 lives** - the game ends when they run out
 
 ### Difficulty Scaling
 
 The game scales on two independent axes:
 
-1. **Level-ups** — every 8 good items collected, the level advances:
+1. **Level-ups** - every 8 good items collected, the level advances:
    - Item speed increases
    - Bad items spawn more frequently
    - Good items spawn less frequently
    - Rush waves grow in size
 
-2. **Time pressure** — every 8 seconds, speed and spawn rate increase slightly
+2. **Time pressure** - every 8 seconds, speed and spawn rate increase slightly
    regardless of score, so you can't just hide and wait
 
 At **level 3+**, rush waves appear: bursts of fast meteors arriving in quick succession
@@ -62,10 +62,10 @@ that you need to dodge or shoot down.
 
 ## Features
 
-- Procedural space background — nebula with 7 color regions built using additive blending,
+- Procedural space background - nebula with 7 color regions built using additive blending,
   3-layer parallax star field, pulsing hero stars with soft halos
 - Player ship with smooth tilt animation, multi-nozzle engine flame effect, and engine trail
-- Shooting mechanic — hold SPACE for rapid fire, glowing cyan laser bolts
+- Shooting mechanic - hold SPACE for rapid fire, glowing cyan laser bolts
 - Screen shake on hit, expanding ring pulses, and particle burst effects
 - FM-synthesized background music at 130 BPM (pure Python `wave` / `math` stdlib — no external tools)
 - Procedural laser and explosion sound effects, also generated with Python stdlib
@@ -122,9 +122,9 @@ pip install -r requirements.txt
 
 | Asset | Source | License |
 |-------|--------|---------|
-| Ship & item sprites | [Kenney.nl — Space Shooter Redux](https://kenney.nl/assets/space-shooter-redux) | CC0 (Public Domain) |
+| Ship & item sprites | [Kenney.nl - Space Shooter Redux](https://kenney.nl/assets/space-shooter-redux) | CC0 (Public Domain) |
 | Orbitron font | [Google Fonts](https://fonts.google.com/specimen/Orbitron) | SIL OFL |
-| Background music | Original FM synthesis — generated with Python stdlib | — |
+| Background music | Original FM synthesis - generated with Python stdlib | — |
 | Sound effects | Procedurally generated with Python `wave` module | — |
 
 ---
