@@ -88,6 +88,7 @@ class StartScreen:
         # instructions
         lines = [
             "Arrow Keys / WASD  -  Move",
+            "SPACE  -  Shoot (destroy bad items!)",
             "Collect STARS (+1) and BOLTS (+3)",
             "Avoid METEORS and ENEMY SHIPS",
             "M  -  Toggle Music",
@@ -103,7 +104,7 @@ class StartScreen:
                     hovered=self.btn_quit.collidepoint(mx, my))
 
         # version / credits
-        credit = self.font_small.render("Assets: Kenney.nl (CC0)  |  Music: Kevin MacLeod (CC-BY)", True, (80, 80, 100))
+        credit = self.font_small.render("Assets: Kenney.nl (CC0)  |  Music: original FM synthesis", True, (80, 80, 100))
         surface.blit(credit, (WIDTH // 2 - credit.get_width() // 2, HEIGHT - 22))
 
 

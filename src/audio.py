@@ -18,12 +18,13 @@ class AudioManager:
             "hit":       "hit.wav",
             "explosion": "explosion.wav",
             "levelup":   "levelup.wav",
+            "shoot":     "shoot.wav",
         }
         for key, fname in sfx_files.items():
             path = os.path.join(ASSET_SND, fname)
             try:
                 snd = pygame.mixer.Sound(path)
-                snd.set_volume(0.55)
+                snd.set_volume(0.38 if key == "shoot" else 0.55)
                 self.sounds[key] = snd
             except Exception as e:
                 print(f"  Audio: couldn't load {fname}: {e}")
