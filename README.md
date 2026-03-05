@@ -9,7 +9,7 @@ rush waves of enemies at higher levels.
 ---
 
 ## Installation
-
+ 
 Requires **Python 3.9+**
 
 ```bash
