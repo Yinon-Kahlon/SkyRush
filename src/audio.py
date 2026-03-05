@@ -30,7 +30,7 @@ class AudioManager:
 
     def _start_music(self):
         # try .mp3 first, then .wav
-        for fname in ("music.mp3", "music.wav", "music.ogg"):
+        for fname in ("music.wav", "music.mp3", "music.ogg"):
             path = os.path.join(ASSET_SND, fname)
             if os.path.exists(path) and os.path.getsize(path) > 5000:
                 try:
