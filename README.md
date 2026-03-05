@@ -1,126 +1,132 @@
-# 🚀 SkyRush
+# SkyRush
 
-> A fast-paced space survival game built with Python & Pygame.
-> Pilot your ship through a cosmic storm — collect energy pickups, dodge meteors and enemy fighters, and survive as long as you can!
+A fast-paced 2D space survival game built with Python and Pygame.
 
----
-
-## 📸 Preview
-
-```
-  ★ Stars   +1 pt  |  ⚡ Bolts   +3 pts
-  ☄ Meteors  -1 life  |  👾 Enemy Ships  -1 life
-```
+Pilot your ship through a cosmic storm — collect energy pickups, shoot down incoming
+threats, and survive as long as you can. The game speeds up over time and launches
+rush waves of enemies at higher levels.
 
 ---
 
-## 🛠 Installation
+## Installation
 
-**Requirements:** Python 3.9+ and pip
+Requires **Python 3.9+**
 
 ```bash
-# 1. Clone the repo
 git clone https://github.com/Yinon-Kahlon/SkyRush.git
 cd SkyRush
-
-# 2. Install dependencies
 pip install -r requirements.txt
-
-# 3. (First run only) Download game assets
-python download_assets.py
-
-# 4. Launch the game
 python main.py
 ```
 
+All assets are included in the repository — no additional downloads needed.
+
 ---
 
-## 🎮 How to Play
+## Controls
 
 | Key | Action |
 |-----|--------|
-| **Arrow Keys** / **WASD** | Move the spaceship |
-| **M** | Toggle background music on/off |
-| **ESC** | Return to main menu |
-| **Enter / Space** | Confirm on menus |
-
-### Objective
-- Collect **stars** (+1) and **energy bolts** (+3) that rise from the bottom of the screen
-- Avoid **meteors** and **enemy ships** — each hit costs 1 life
-- You start with **3 lives** — game over when you run out
-
-### Difficulty Scaling
-Every **10 good items** collected advances you to the next level:
-- Item speed increases
-- Obstacles spawn more frequently
-- Good items spawn less frequently
+| Arrow Keys / WASD | Move the ship |
+| SPACE (hold) | Fire laser |
+| M | Toggle background music |
+| ESC | Return to main menu |
+| Enter | Confirm on menus |
 
 ---
 
-## 📁 Project Structure
+## Gameplay
+
+- **Collect** stars and energy bolts rising from the bottom of the screen — **+100 points each**
+- **Avoid** meteors and enemy ships — each hit costs 1 life
+- **Shoot** obstacles with your laser to destroy them (defensive — no score bonus)
+- You start with **3 lives** — the game ends when they run out
+
+### Difficulty Scaling
+
+The game scales on two independent axes:
+
+1. **Level-ups** — every 8 good items collected, the level advances:
+   - Item speed increases
+   - Bad items spawn more frequently
+   - Good items spawn less frequently
+   - Rush waves grow in size
+
+2. **Time pressure** — every 8 seconds, speed and spawn rate increase slightly
+   regardless of score, so you can't just hide and wait
+
+At **level 3+**, rush waves appear: bursts of fast meteors arriving in quick succession
+that you need to dodge or shoot down.
+
+---
+
+## Features
+
+- Procedural space background — nebula with 7 color regions built using additive blending,
+  3-layer parallax star field, pulsing hero stars with soft halos
+- Player ship with smooth tilt animation, multi-nozzle engine flame effect, and engine trail
+- Shooting mechanic — hold SPACE for rapid fire, glowing cyan laser bolts
+- Screen shake on hit, expanding ring pulses, and particle burst effects
+- FM-synthesized background music at 130 BPM (pure Python `wave` / `math` stdlib — no external tools)
+- Procedural laser and explosion sound effects, also generated with Python stdlib
+- Floating +100 score popup on every item collection
+- Start screen and animated game-over screen
+
+---
+
+## Project Structure
 
 ```
 SkyRush/
-├── main.py              # Entry point — initialises pygame and starts Game
-├── download_assets.py   # One-time script to fetch sprites, sounds & fonts
-├── requirements.txt     # Python dependencies
-├── README.md            # This file
+├── main.py              # Entry point — initialises pygame and launches the game
+├── generate_music.py    # One-time script that generates assets/sounds/music.wav
+├── gen_shoot_sfx.py     # One-time script that generates assets/sounds/shoot.wav
+├── requirements.txt
 │
 ├── src/
-│   ├── settings.py      # All constants (screen size, speeds, colors…)
-│   ├── game.py          # Core Game class — state machine & main loop
-│   ├── player.py        # Player sprite with tilt animation & i-frames
-│   ├── items.py         # GoodItem, BadItem, SpawnController (level logic)
-│   ├── background.py    # Parallax 3-layer star field
-│   ├── particles.py     # Particle system (explosions, collect sparkles)
-│   ├── hud.py           # Score / lives / level HUD + floating score popups
-│   ├── screens.py       # StartScreen and GameOverScreen
-│   └── audio.py         # Sound effects & background music manager
+│   ├── settings.py      # All constants (screen size, speeds, colors, asset paths)
+│   ├── game.py          # Core Game class — state machine, collision handling, main loop
+│   ├── player.py        # Player sprite — movement, tilt, shooting, invincibility frames
+│   ├── items.py         # GoodItem, BadItem, RushItem, SpawnController (difficulty logic)
+│   ├── bullet.py        # Laser bolt sprite — procedurally drawn with glow effect
+│   ├── background.py    # Procedural nebula + parallax scrolling star layers
+│   ├── particles.py     # Particle system (explosions, sparkle effects, level-up burst)
+│   ├── gfx.py           # Visual helpers — glow surfaces, screen shake, ring pulse effects
+│   ├── hud.py           # HUD rendering — score, lives, level, floating score popups
+│   ├── screens.py       # StartScreen and GameOverScreen with animated elements
+│   └── audio.py         # AudioManager — loads SFX and streams background music
 │
 └── assets/
     ├── images/
-    │   ├── player/      # Ship sprite
-    │   ├── items/       # Good & bad item sprites
-    │   ├── backgrounds/ # Space background (if downloaded)
-    │   └── ui/          # UI elements
-    ├── sounds/          # WAV/MP3 audio files
-    └── fonts/           # Orbitron TTF font
+    │   ├── player/      # Ship sprite (Kenney Space Shooter Redux)
+    │   └── items/       # Good and bad item sprites (Kenney Space Shooter Redux)
+    ├── sounds/          # WAV audio files (music + SFX)
+    └── fonts/           # Orbitron TTF font (Google Fonts)
 ```
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
-| Library | Version | Purpose |
+| Package | Version | Purpose |
 |---------|---------|---------|
 | `pygame` | 2.5.2 | Game engine — rendering, input, audio |
 
-Install with:
 ```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-## 🔮 TODO / Future Ideas
-
-- [ ] High-score leaderboard saved to file
-- [ ] Shield power-up item
-- [ ] Boss enemy every 5 levels
-- [ ] More ship skins to unlock
-- [ ] Mobile touch controls
-
----
-
-## 📜 Credits
+## Credits
 
 | Asset | Source | License |
 |-------|--------|---------|
-| Spaceship & item sprites | [Kenney.nl – Space Shooter Redux](https://kenney.nl/assets/space-shooter-redux) | CC0 |
-| Background music | [Kevin MacLeod – incompetech.com](https://incompetech.com) | CC BY 4.0 |
-| Font (Orbitron) | [Google Fonts](https://fonts.google.com/specimen/Orbitron) | OFL |
+| Ship & item sprites | [Kenney.nl — Space Shooter Redux](https://kenney.nl/assets/space-shooter-redux) | CC0 (Public Domain) |
+| Orbitron font | [Google Fonts](https://fonts.google.com/specimen/Orbitron) | SIL OFL |
+| Background music | Original FM synthesis — generated with Python stdlib | — |
 | Sound effects | Procedurally generated with Python `wave` module | — |
 
 ---
 
-*Final project for Introduction to Computer Engineering — Python course*
+*Final project — Python Programming course*

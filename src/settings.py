@@ -9,17 +9,17 @@ TITLE  = "SkyRush"
 PLAYER_SPEED      = 6
 PLAYER_START_LIVES = 3
 
-# items
-ITEM_BASE_SPEED   = 2.5
-SPEED_PER_LEVEL   = 0.6    # added each level
-ITEMS_PER_LEVEL   = 10     # good items needed to level up
+# items  (SpawnController manages these dynamically, these are starting values)
+ITEM_BASE_SPEED   = 3.2
+SPEED_PER_LEVEL   = 0.75   # added each level-up
+ITEMS_PER_LEVEL   = 8      # good items needed to level up
 
-# spawn timers (in frames) - go up/down as level increases
-GOOD_SPAWN_BASE   = 55
-BAD_SPAWN_BASE    = 75
-GOOD_SPAWN_INC    = 8      # less good items each level
-BAD_SPAWN_DEC     = 10     # more bad items each level
-MIN_SPAWN_RATE    = 20     # don't let it go below this
+# spawn timers (in frames) - SpawnController adjusts these as level increases
+GOOD_SPAWN_BASE   = 52
+BAD_SPAWN_BASE    = 68
+GOOD_SPAWN_INC    = 5      # interval grows each level (fewer good items)
+BAD_SPAWN_DEC     = 8      # interval shrinks each level (more bad items)
+MIN_SPAWN_RATE    = 20     # hard floor - don't go below this
 
 # score
 STAR_SCORE        = 100
