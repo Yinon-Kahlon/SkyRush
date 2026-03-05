@@ -67,10 +67,9 @@ class Game:
         self.shake     = ScreenShake()
         self.rings     = RingEffect()
 
-        self.score        = 0
-        self.lives        = PLAYER_START_LIVES
-        self.level        = 1
-        self.score_timer  = 0   # counts frames for time-based scoring
+        self.score = 0
+        self.lives = PLAYER_START_LIVES
+        self.level = 1
 
     # ─── Main loop ────────────────────────────────────────────────────────────
 
@@ -135,12 +134,6 @@ class Game:
         self.items.update()
 
         self._check_collisions()
-
-        # time-based scoring: +1 every second survived
-        self.score_timer += 1
-        if self.score_timer >= 60:
-            self.score_timer = 0
-            self.score += 1
 
         if self.lives < 0:
             self.gameover_screen.set_data(self.score, self.level)

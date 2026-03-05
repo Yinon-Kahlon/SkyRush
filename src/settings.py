@@ -22,8 +22,8 @@ BAD_SPAWN_DEC     = 10     # more bad items each level
 MIN_SPAWN_RATE    = 20     # don't let it go below this
 
 # score
-STAR_SCORE        = 1
-BOLT_SCORE        = 3
+STAR_SCORE        = 100
+BOLT_SCORE        = 100
 
 # colors
 WHITE      = (255, 255, 255)
