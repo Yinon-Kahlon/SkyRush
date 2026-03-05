@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp download files
+_tmp_*/
+*.zip
+
+# Large audio we don't want in git (optional — comment out if you want music in repo)
+# assets/sounds/music.mp3
+
+# PDF (course document — not part of code)
+*.pdf
